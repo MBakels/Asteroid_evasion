@@ -31,7 +31,7 @@
 			var vecAngle:Number = Math.random() * 360;
 			var vecRandomLocation:Vector2 = new Vector2(0, 0);
 			vecRandomLocation.fromAngle(vecAngle);
-			vecRandomLocation.multS(Math.random() * (origin.radius * 1.2));
+			vecRandomLocation.multS(Math.random() * (origin.collider.radius * 1.2));
 			vecLocation.add(vecRandomLocation);
 		}
 

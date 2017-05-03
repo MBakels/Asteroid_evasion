@@ -1,17 +1,18 @@
 ﻿package  {
 	
-	public class PlayerShip extends Collider {
+	public class PlayerShip extends Mover {
 		
 		// Properties
 		var main:Main;
 		var vecMousePosition:Vector2;
 		public var rocketThrust:Boolean;
 		var cannon:ShipCannon;
+		var collider:Collider;
 		
 		// constructor code
 		public function PlayerShip(_main) {
 			this.main = _main;
-			radius = this.width / 2;
+			collider = new Collider(this, this.width / 2);
 			vecVelocity = new Vector2(0, 0);
 			vecAcceleration = new Vector2(0, 0);
 			vecLocation = new Vector2((main.stage.stageWidth / 2), (main.stage.stageHeight / 2));

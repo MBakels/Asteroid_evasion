@@ -3,14 +3,15 @@
 	import flash.display.MovieClip;
 	
 	
-	public class Bullet extends Collider {
+	public class Bullet extends Mover {
 		
 		var player:PlayerShip;
+		var collider:Collider;
 		
 		// constructor code
 		public function Bullet(_player) {
 			this.player = _player;
-			radius = this.width / 2;
+			collider = new Collider(this, this.width / 2);
 			vecLocation = player.vecLocation.copy();
 			vecVelocity = player.vecVelocity.copy();
 			vecDirection = player.vecDirection.copy();

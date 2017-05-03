@@ -81,7 +81,7 @@
 				for(var a = asteroids.length - 1; a >= 0; a--){
 					var asteroid = asteroids[a];
 					asteroid.Update();
-					if(asteroid.OnScreenCheck(150)){
+					if(asteroid.collider.OnScreenCheck(150)){
 						asteroids.splice(asteroids.indexOf(asteroid), 1);
 						stage.removeChild(asteroid);
 					}
@@ -89,7 +89,7 @@
 				for(var b = bullets.length - 1; b >= 0; b--){
 					var bullet = bullets[b];
 					bullet.Update();
-					if(bullet.OnScreenCheck(20)){
+					if(bullet.collider.OnScreenCheck(20)){
 						bullets.splice(bullets.indexOf(bullet), 1);
 						stage.removeChild(bullet);
 					}
@@ -99,14 +99,14 @@
 					var ast = asteroids[c];
 					for each(var f:Asteroid in asteroids){
 						if(ast != f){
-							if(ast.CheckCircleCollision(f)){
-								ast.SetNewVelocities(f);
+							if(ast.collider.CheckCircleCollision(f)){
+								ast.collider.SetNewVelocities(f);
 							}
 						}
 					}
 					for(var d = bullets.length - 1; d >= 0; d--){
 						var bul = bullets[d];
-						if(ast.CheckCircleCollision(bul)){
+						if(ast.collider.CheckCircleCollision(bul)){
 							asteroids.splice(asteroids.indexOf(ast), 1);
 							stage.removeChild(ast);
 							bullets.splice(bullets.indexOf(bul), 1);
@@ -116,7 +116,7 @@
 							UpdateGui();
 						}
 					}
-					if(stage.contains(player) && ast.CheckCircleCollision(player)){
+					if(stage.contains(player) && ast.collider.CheckCircleCollision(player)){
 						stage.removeChild(player);
 						stage.removeChild(gui);
 						gameTimer.stop();
@@ -130,7 +130,7 @@
 		function BreakAsteroid(c){
 			var ps = new ParticleSystem(c);
 			particleSystems.push(ps);
-			ps.addParticle(Smoke, 3 * c.radius);
+			ps.addParticle(Smoke, 3 * c.collider.radius);
 			stage.addChild(particleSystems[particleSystems.length - 1]);
 			
 			var startAngle = Math.random() * 360;

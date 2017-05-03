@@ -2,10 +2,11 @@
 	
 	import flash.display.MovieClip;
 	
-	public class Asteroid extends Collider {
+	public class Asteroid extends Mover {
 		
 		// Properties
 		var main:Main;
+		var collider:Collider;
 		
 		// constructor code
 		public function Asteroid(_main) {
@@ -13,7 +14,7 @@
 			mass = Math.random() * 0.5 + 0.5;
 			this.width *= mass;
 			this.height *= mass;
-			radius = this.width / 2;
+			collider = new Collider(this, this.width / 2);
 			angle = 0;
 			this.x = -100;
 			this.y = -100;
@@ -79,7 +80,7 @@
 			mass = (origin.mass / 2) * (0.8 + Math.random() * (1.2 - 0.8));
 			this.width *= mass;
 			this.height *= mass;
-			radius = this.width / 2;
+			collider.radius = this.width / 2;
 			
 			vecLocation = origin.vecLocation.copy();
 			var vecOffset:Vector2 = new Vector2(0, 0);
